@@ -1,0 +1,63 @@
+x2.temp <- rnorm(250, mean = 0, sd = 1)
+x2 <- sign(x2.temp)*x2.temp^2 * 15 + 100
+par(mfrow=c(3,1))
+hist(x2, freq = FALSE, breaks = 20)
+points(density(x2), type = "1")
+rug(x2)
+library(vioplot)
+vioplot(x2, horizontal=TRUE, col="gray")
+boxplot(x2, horizontal=TRUE)
+x2_df <- data.frame(x2)
+p1 <- ggplot(x2_df , aes(x = x2))
+p1 <- p1 + geom_histogram(aes(y=..density..)
+                          , binwidth=5
+                          , colour="black", fill="white")
+p1 <- p1 + geom_density(alpha=0.1, fill="#FF6666")
+p1 <- p1 + geom_point(aes(y = -0.001)
+                       , position = position_jitter(height = 0.0005)
+                       , alpha = 1/5)
+p2 <- ggplot(x2_df, aes(x = "x2", y = x2))
+p2 <- p2 + geom_violin(fill = "gray50")
+p2 <- p2 + geom_boxplot(width = 0.2, alpha = 3/4)
+p2 <- p2 + coord_flip()
+p3 <- ggplot(x2_df, aes(x = "x2", y = x2))
+p3 <- p3 + geom_boxplot()
+p3 <- p3 + coord_flip()
+library(gridExtra)
+grid.arrange(p1, p2, p3, ncol=1)
+> summary(x2)
+   Min. 1st Qu.  Median    Mean 3rd Qu. 
+ -14.48   90.12   99.99   98.59  107.97 
+   Max. 
+ 227.76 
+> skewness(x2)
+[1] 0.006983002
+> stem(x2)
+
+  The decimal point is 1 digit(s) to the right of the |
+
+  -1 | 4
+  -0 | 
+   0 | 4
+   1 | 2
+   2 | 5
+   3 | 3446
+   4 | 34
+   5 | 234678
+   6 | 01236
+   7 | 0345577778889999
+   8 | 0001111222334445558899
+   9 | 00000111223333345555566666666677888888999999999999
+  10 | 00000000000000000000000000000000111111111111112222223333334444445555+6
+  11 | 00001111123366666778889999
+  12 | 0233445567
+  13 | 12333489
+  14 | 000247
+  15 | 4
+  16 | 
+  17 | 
+  18 | 1
+  19 | 44
+  20 | 
+  21 | 
+  22 | 8
