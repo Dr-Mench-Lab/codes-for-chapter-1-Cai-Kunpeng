@@ -453,7 +453,7 @@ bs.one.samp.dist(toco)
 ![png](output_26_1.png)
 ----
 
-
+ 
 +*In[ ]:*+
 [source, r]
 ----
